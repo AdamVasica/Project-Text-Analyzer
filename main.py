@@ -36,13 +36,20 @@ Selection = input('Enter a number btw. 1 and 3 to select: ')
 print(Dash)
 Selected_text = TEXTS[int(Selection) - 1].strip()
 
+
 # Asking a user to select the text
 if Selection.isalpha() or int(Selection) < 1 or int(Selection) > 3:
     print('Please, enter a number btw. 1 and 3 to select')
     exit()
 
 words = Selected_text.split(" ")
-print("There are", len(words), "words in the selected text.")
+
+#Cleaning list
+clean_list = []
+
+for element in words:
+    clean_list.append(element.strip())
+print("There are", len(clean_list), "words in the selected text.")
 
 
 count_capital_letters = 0
@@ -51,7 +58,7 @@ count_lower_words = 0
 count_numbers = 0
 sum_numbers = 0
 
-for word in words:
+for word in clean_list:
     if len(word) > 0 and word[0].isupper():
         count_capital_letters += 1
     if word.isupper() and word.isalpha():
@@ -71,11 +78,11 @@ print(Dash)
 print("LEN |  OCCURENCES        |NR.")
 print(Dash)
 
-for index in range(len(max(words, key=len))):
+for index in range(len(max(clean_list, key=len))):
     len_word = index + 1
     count_word = 0
 
-    for word in words:
+    for word in clean_list:
         if len(word) == len_word:
             count_word += 1
 
